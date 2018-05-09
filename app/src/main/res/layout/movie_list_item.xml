@@ -5,19 +5,17 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/cvVideo"
+        android:id="@+id/ivPoster"
         android:layout_width="match_parent"
         android:layout_height="@dimen/movie_image_height"
         android:contentDescription="@string/movie_picture_content_description"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+     />
 
     <LinearLayout
         android:id="@+id/progressBarContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/colorBlackSemiTransparent"
         android:gravity="center"
         android:orientation="vertical"

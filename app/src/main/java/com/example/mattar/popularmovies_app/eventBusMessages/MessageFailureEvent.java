@@ -1,4 +1,4 @@
-package com.example.mattar.popularmovies_app.EventBusMessages;
+package com.example.mattar.popularmovies_app.eventBusMessages;
 
 /**
  * Created by Mattar on 5/9/2018.

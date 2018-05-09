@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.mattar.popularmovies_app.networkUtils.api.MoviesApiManagerSingleton;
 
-public class MainActivity extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

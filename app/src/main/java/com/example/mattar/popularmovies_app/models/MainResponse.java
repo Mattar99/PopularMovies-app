@@ -81,5 +81,9 @@ public class MainResponse {
         this.results = results;
     }
 
+    public void appendMovies(MainResponse movies) {
+        this.page = movies.getPage();
+        this.results.addAll(movies.getResults());
+    }
 
 }

@@ -1,16 +1,13 @@
 package com.example.mattar.popularmovies_app.networkUtils.api;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.example.mattar.popularmovies_app.EventBusMessages.MessageResponseEvent;
+import com.example.mattar.popularmovies_app.eventBusMessages.MessageResponseEvent;
 import com.example.mattar.popularmovies_app.models.MainResponse;
+import com.example.mattar.popularmovies_app.models.movieDetails.MovieDetails;
 import com.example.mattar.popularmovies_app.networkUtils.Constants;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.logging.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,6 +116,26 @@ public final class MoviesApiManagerSingleton {
             }
         });
 
+    }
+
+
+
+    public Call<MovieDetails> getMovie(int movieId) {
+        Call<MovieDetails> call = movieApiService.getMovie(movieId, Constants.TMDB_API_KEY);
+
+        call.enqueue(new Callback<MovieDetails>() {
+            @Override
+            public void onResponse(@NonNull Call<MovieDetails> call, @NonNull Response<MovieDetails> response) {
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MovieDetails> call, @NonNull Throwable t) {
+
+            }
+        });
+
+        return call;
     }
 
 
