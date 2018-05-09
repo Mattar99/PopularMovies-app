@@ -12,6 +12,8 @@ import com.example.mattar.popularmovies_app.MovieListActivity;
 import com.example.mattar.popularmovies_app.R;
 import com.example.mattar.popularmovies_app.models.MainResponse;
 import com.example.mattar.popularmovies_app.models.movieDetails.MovieDetails;
+import com.example.mattar.popularmovies_app.utils.ImageUtils;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,7 +48,16 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MovieViewHolder holder, int position) {
+
+        final int pos = position;
+
+        holder.mIvPoster.post(new Runnable() {
+            @Override
+            public void run() {
+                Picasso.get().load(ImageUtils.buildPosterImageUrl(mMainResponse.getResults().get(pos).getPosterPath(),holder,))
+            }
+        });
 
     }
 
