@@ -1,4 +1,4 @@
-package com.example.mattar.popularmovies_app.Controllers;
+package com.example.mattar.popularmovies_app.controllers;
 
 
 import android.os.Bundle;

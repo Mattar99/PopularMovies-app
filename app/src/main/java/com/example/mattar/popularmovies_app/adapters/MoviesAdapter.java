@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.mattar.popularmovies_app.Controllers.MovieDetailActivity;
-import com.example.mattar.popularmovies_app.Controllers.MovieDetailFragment;
-import com.example.mattar.popularmovies_app.Controllers.MovieListActivity;
+import com.example.mattar.popularmovies_app.controllers.MovieDetailActivity;
+import com.example.mattar.popularmovies_app.controllers.MovieDetailFragment;
+import com.example.mattar.popularmovies_app.controllers.MovieListActivity;
 import com.example.mattar.popularmovies_app.R;
 import com.example.mattar.popularmovies_app.models.MainResponse;
 import com.example.mattar.popularmovies_app.models.movieDetails.MovieDetails;
@@ -127,11 +127,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                             Bundle arguments = new Bundle();
                             arguments.putParcelable(MovieDetailFragment.EXTRA_MOVIE_KEY,result);
 
-                            MovieDetailFragment fragment = new MovieDetailFragment();
+                            /*MovieDetailFragment fragment = new MovieDetailFragment();
                             fragment.setArguments(arguments);
                             mParentActivity.getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.movieDetailContainer, fragment)
-                                    .commit();
+                                    .commit();*/
 
                         }else{
                             Intent intent = new Intent(context,MovieDetailActivity.class);
@@ -144,6 +144,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                         Toast.makeText(context, R.string.movie_detail_error_message, Toast.LENGTH_SHORT).show();
                     }
 
+                    callRequest = null;
+                    movieViewHolder.showProgress(false);
                 }
 
                 @Override
@@ -155,15 +157,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                 }
             });
 
-
-
-
-
         }else{
             Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show();
         }
-
-
       }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {

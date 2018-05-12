@@ -1,4 +1,4 @@
-package com.example.mattar.popularmovies_app.Controllers;
+package com.example.mattar.popularmovies_app.controllers;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

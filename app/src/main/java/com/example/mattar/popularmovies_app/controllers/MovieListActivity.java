@@ -1,4 +1,4 @@
-package com.example.mattar.popularmovies_app.Controllers;
+package com.example.mattar.popularmovies_app.controllers;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import com.example.mattar.popularmovies_app.adapters.MoviesAdapter;
 import com.example.mattar.popularmovies_app.models.MainResponse;
 import com.example.mattar.popularmovies_app.networkUtils.api.MoviesApiCallback;
 import com.example.mattar.popularmovies_app.networkUtils.api.MoviesApiManagerSingleton;
+import com.example.mattar.popularmovies_app.utils.SpacingItemDecoration;
 
 public class MovieListActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class MovieListActivity extends AppCompatActivity {
         mGridLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mGridLayoutManager);
         final Context context = this;
-
+        mRecyclerView.addItemDecoration(new SpacingItemDecoration(8));
         Manager.getMovies(MoviesApiManagerSingleton.SortBy.MostPopular, 1, new MoviesApiCallback<MainResponse>() {
             @Override
             public void onResponse(MainResponse result) {
