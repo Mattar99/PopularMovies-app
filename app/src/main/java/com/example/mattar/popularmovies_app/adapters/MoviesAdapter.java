@@ -1,6 +1,8 @@
 package com.example.mattar.popularmovies_app.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,10 +12,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.mattar.popularmovies_app.MovieListActivity;
+import com.example.mattar.popularmovies_app.Controllers.MovieDetailActivity;
+import com.example.mattar.popularmovies_app.Controllers.MovieDetailFragment;
+import com.example.mattar.popularmovies_app.Controllers.MovieListActivity;
 import com.example.mattar.popularmovies_app.R;
 import com.example.mattar.popularmovies_app.models.MainResponse;
 import com.example.mattar.popularmovies_app.models.movieDetails.MovieDetails;
+import com.example.mattar.popularmovies_app.networkUtils.api.MoviesApiCallback;
+import com.example.mattar.popularmovies_app.networkUtils.api.MoviesApiManagerSingleton;
 import com.example.mattar.popularmovies_app.utils.ImageUtils;
 import com.example.mattar.popularmovies_app.utils.Misc;
 import com.squareup.picasso.Picasso;
@@ -67,6 +73,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         holder.itemView.setTag(mMainResponse.getResults().get(position).getId());
 
+        // if the user clicks on a different movie while loading another Movie details
+        // cancel the first call or old movie . load another one
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +115,46 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         if(Misc.isNetworkAvailable(context)){
 
+            movieViewHolder.showProgress(true);
+
+            callRequest = MoviesApiManagerSingleton.getInstance().getMovie(movieId, new MoviesApiCallback<MovieDetails>() {
+                @Override
+                public void onResponse(MovieDetails result) {
+
+                    if(result!=null){
+
+                        if(mTwoPane){
+                            Bundle arguments = new Bundle();
+                            arguments.putParcelable(MovieDetailFragment.EXTRA_MOVIE_KEY,result);
+
+                            MovieDetailFragment fragment = new MovieDetailFragment();
+                            fragment.setArguments(arguments);
+                            mParentActivity.getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.movieDetailContainer, fragment)
+                                    .commit();
+
+                        }else{
+                            Intent intent = new Intent(context,MovieDetailActivity.class);
+                            intent.putExtra(MovieDetailFragment.EXTRA_MOVIE_KEY,result);
+                            context.startActivity(intent);
+
+                        }
+
+                    }else{
+                        Toast.makeText(context, R.string.movie_detail_error_message, Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onCancel() {
+
+                    callRequest = null;
+                    movieViewHolder.showProgress(false);
+
+                }
+            });
+
 
 
 
@@ -117,27 +165,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
 
