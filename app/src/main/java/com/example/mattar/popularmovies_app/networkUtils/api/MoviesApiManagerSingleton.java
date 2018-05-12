@@ -71,67 +71,79 @@ public final class MoviesApiManagerSingleton {
 
 
 
-    public void getMovies(SortBy sortBy, int page) {
+    public void getMovies(SortBy sortBy, int page, MoviesApiCallback<MainResponse> moviesApiCallback) {
 
         switch (sortBy) {
             case MostPopular:
-                getPopularMovies(page);
+                getPopularMovies(page, moviesApiCallback);
                 break;
             case TopRated:
-                getTopRatedMovies(page);
+                getTopRatedMovies(page, moviesApiCallback);
                 break;
-            default:
-                throw new UnsupportedOperationException("Wrong enum input");
+            default: throw  new UnsupportedOperationException("Choice is not supported");
         }
 
     }
 
 
 
-    private void getTopRatedMovies(int page) {
+    private void getTopRatedMovies(int page, final MoviesApiCallback<MainResponse> moviesApiCallback) {
         movieApiService.getTopRatedMovies(Constants.TMDB_API_KEY, page).enqueue(new Callback<MainResponse>() {
+
             @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-                EventBus.getDefault().post(new MessageResponseEvent<>(response.body()));
+            public void onResponse(@NonNull Call<MainResponse> call, @NonNull Response<MainResponse> response) {
+                moviesApiCallback.onResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<MainResponse> call, @NonNull Throwable t) {
+                if (call.isCanceled()) {
+                    moviesApiCallback.onCancel();
+                } else {
+                    moviesApiCallback.onResponse(null);
+                }
             }
         });
-
     }
 
-    private void getPopularMovies(int page) {
+    private void getPopularMovies(int page, final MoviesApiCallback<MainResponse> moviesApiCallback) {
         movieApiService.getPopularMovies(Constants.TMDB_API_KEY, page).enqueue(new Callback<MainResponse>() {
+
             @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-                EventBus.getDefault().post(new MessageResponseEvent<>(response.body()));
+            public void onResponse(@NonNull Call<MainResponse> call, @NonNull Response<MainResponse> response) {
+                moviesApiCallback.onResponse(response.body());
             }
 
             @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<MainResponse> call, @NonNull Throwable t) {
+                if (call.isCanceled()) {
+                    moviesApiCallback.onCancel();
+                } else {
+                    moviesApiCallback.onResponse(null);
+                }
             }
+
         });
-
     }
 
 
 
-    public Call<MovieDetails> getMovie(int movieId) {
+    public Call<MovieDetails> getMovie(int movieId, final MoviesApiCallback<MovieDetails> moviesApiCallback) {
         Call<MovieDetails> call = movieApiService.getMovie(movieId, Constants.TMDB_API_KEY);
 
         call.enqueue(new Callback<MovieDetails>() {
             @Override
             public void onResponse(@NonNull Call<MovieDetails> call, @NonNull Response<MovieDetails> response) {
-
+                moviesApiCallback.onResponse(response.body());
             }
 
             @Override
             public void onFailure(@NonNull Call<MovieDetails> call, @NonNull Throwable t) {
-
+                if (call.isCanceled()) {
+                    moviesApiCallback.onCancel();
+                } else {
+                    moviesApiCallback.onResponse(null);
+                }
             }
         });
 

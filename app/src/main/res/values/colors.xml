@@ -10,4 +10,6 @@
     <color name="colorDarkGrey">#5E697C</color>
     <color name="colorBlackSemiTransparent">#78000000</color>
 
+    <color name="ic_launcher_background">#ffffff</color>
+
 </resources>
