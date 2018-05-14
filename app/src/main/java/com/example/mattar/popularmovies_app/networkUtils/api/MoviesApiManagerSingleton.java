@@ -2,12 +2,10 @@ package com.example.mattar.popularmovies_app.networkUtils.api;
 
 import android.support.annotation.NonNull;
 
-import com.example.mattar.popularmovies_app.eventBusMessages.MessageResponseEvent;
 import com.example.mattar.popularmovies_app.models.MainResponse;
 import com.example.mattar.popularmovies_app.models.movieDetails.MovieDetails;
 import com.example.mattar.popularmovies_app.networkUtils.Constants;
 
-import org.greenrobot.eventbus.EventBus;
 
 import retrofit2.Call;
 import retrofit2.Callback;
