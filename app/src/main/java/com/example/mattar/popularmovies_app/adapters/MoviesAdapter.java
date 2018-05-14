@@ -127,11 +127,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                             Bundle arguments = new Bundle();
                             arguments.putParcelable(MovieDetailFragment.EXTRA_MOVIE_KEY,result);
 
-                            /*MovieDetailFragment fragment = new MovieDetailFragment();
+                            MovieDetailFragment fragment = new MovieDetailFragment();
                             fragment.setArguments(arguments);
                             mParentActivity.getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.movieDetailContainer, fragment)
-                                    .commit();*/
+                                    .commit();
 
                         }else{
                             Intent intent = new Intent(context,MovieDetailActivity.class);
