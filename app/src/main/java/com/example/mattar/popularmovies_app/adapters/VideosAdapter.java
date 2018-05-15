@@ -17,6 +17,7 @@ import com.example.mattar.popularmovies_app.models.movieDetails.Videos;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Mattar on 5/12/2018.
@@ -83,6 +84,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
         public VideoViewHolder(View itemView) {
             super(itemView);
+
+            ButterKnife.bind(this,itemView);
         }
     }
 }

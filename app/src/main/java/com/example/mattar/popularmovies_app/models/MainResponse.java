@@ -1,5 +1,8 @@
 package com.example.mattar.popularmovies_app.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +13,7 @@ import java.util.List;
  * Created by Mattar on 5/7/2018.
  */
 
-public class MainResponse {
+public class MainResponse implements Parcelable {
 
     @SerializedName("page")
     @Expose
@@ -86,4 +89,35 @@ public class MainResponse {
         this.results.addAll(movies.getResults());
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.page);
+        dest.writeInt(this.totalResults);
+        dest.writeInt(this.totalPages);
+        dest.writeTypedList(this.results);
+    }
+
+    protected MainResponse(Parcel in) {
+        this.page = in.readInt();
+        this.totalResults = in.readInt();
+        this.totalPages = in.readInt();
+        this.results = in.createTypedArrayList(Movie.CREATOR);
+    }
+
+    public static final Parcelable.Creator<MainResponse> CREATOR = new Parcelable.Creator<MainResponse>() {
+        @Override
+        public MainResponse createFromParcel(Parcel source) {
+            return new MainResponse(source);
+        }
+
+        @Override
+        public MainResponse[] newArray(int size) {
+            return new MainResponse[size];
+        }
+    };
 }

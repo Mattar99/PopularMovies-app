@@ -55,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="2dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvVoteValue"
                 app:layout_constraintEnd_toEndOf="@+id/tvTitle"
                 app:layout_constraintTop_toTopOf="@+id/tvVoteValue"

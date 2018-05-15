@@ -94,12 +94,7 @@ public class MovieDetailFragment extends Fragment {
         }
 
 
-        mFbLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchFavouriteStatus();
-            }
-        });
+
     }
 
     @Override
@@ -123,6 +118,12 @@ public class MovieDetailFragment extends Fragment {
 
         ButterKnife.bind(this,rootView);
 
+        mFbLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchFavouriteStatus();
+            }
+        });
 
 
         mIsFavourite = isFavouriteMovie();

@@ -62,6 +62,15 @@ public final class MoviesApiManagerSingleton {
         public int id() {
             return mValue;
         }  // Return enum index
+
+        public static SortBy fromId(int value) {
+            for (SortBy svalue : values()) {
+                if (svalue.mValue == value) {
+                    return svalue;
+                }
+            }
+            return MostPopular;
+        }
     }
 
 

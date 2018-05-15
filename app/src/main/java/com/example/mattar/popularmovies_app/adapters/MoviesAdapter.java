@@ -162,7 +162,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
       }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.ivPoster)
         public ImageView mIvPoster;
