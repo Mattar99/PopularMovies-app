@@ -23,14 +23,14 @@ If you don’t already have an account, you will need to create one in order to 
 
 Screenshots
 -----------
-<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone.png" alt="alt text" width="400"> <img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone-land.png" alt="alt text" width="400">
+<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone.png" alt="alt text" width="400"> 
 
 <img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone-details.png" alt="alt text" width="400"> <img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone-details2.png" alt="alt text" width="400">
 
-<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-land.png" alt="alt text" width="400"> <img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-port.png" alt="alt text" width="400">
+<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-port.png" alt="alt text" width="400"><img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-details.png" alt="alt text" width="400">
 
-<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-details.png" alt="alt text" width="400">
-
+<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/phone-land.png" alt="alt text" width="400">
+<img src="https://raw.githubusercontent.com/mattar99/PopularMovies-app/master/art/tablet-land.png" alt="alt text" width="400">
 
 Libraries
 ---------
